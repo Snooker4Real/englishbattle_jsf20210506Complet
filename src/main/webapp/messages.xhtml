@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+	<title>English Battle G17</title>
+</h:head>
+
+<f:view>
+	<h:body>
+	<p:dataTable id="messages" var="message"
+		value="#{messagerieBean.messages}">
+
+		<f:facet name="header">
+			<h2>Liste de vos messages</h2>
+
+			<p:commandButton id="toggler" type="button" value="Options"
+				style="float:right" icon="ui-icon-calculator" />
+			<p:columnToggler datasource="messages" trigger="toggler" />
+		</f:facet>
+
+		<p:column headerText="Expediteur">
+			<h:outputText value="#{message.expediteur.prenom}" />
+		</p:column>
+
+		<p:column headerText="Objet">
+			<h:outputText value="#{message.objet}" />
+		</p:column>
+
+		<p:column headerText="dateEnvoi">
+			<h:outputText value="#{message.dateEnvoi}" />
+		</p:column>
+
+	</p:dataTable>
+
+	<br />
+	<br />
+	<a href="tableauDeBord.xhtml">Retour à l'accueil</a>
+	</h:body>
+</f:view>
+</html>
+
+

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+    <title>English Battle G17</title>
+</h:head>
+
+<f:view>
+
+    <h:body>
+        <h1>Nouveau Message</h1>
+
+		<h2>Utilisateur: test #{messagerieBean.joueur.prenom}  </h2>
+     	<h:form>
+	        <div class="p-field p-col-12 p-md-4">
+	             <p:outputLabel for="@next" value="Destinataire"/>
+	             <p:selectOneMenu id="destinataire" value="#{messagerieBean.message.destinataire.id}" dynamic="true">
+	                 <f:selectItem itemLabel="Choisir un destinataire" itemValue=""/>
+	                 <f:selectItems value="#{messagerieBean.joueurs}" var="joueur"
+				itemLabel="#{joueur.nom}" itemValue="#{joueur.id}" />
+	             </p:selectOneMenu>
+	        </div>
+	        <br/>
+			<h:outputLabel for="objet" value="Objet"/>
+			<p:inputText id="objet" value="#{messagerieBean.message.objet}"/>
+			<br/>
+        	<p:textEditor widgetVar="editor1" value="#{messagerieBean.message.corps}" height="300"  secure="false"/>
+        	<br/>
+        	<p:signature style="width:400px;height:200px" widgetVar="sig" guideline="true"/>
+        	<br/>
+			<p:commandButton value="Envoyer" action="#{messagerieBean.envoyerMessage}" ajax="false"/>
+		</h:form>
+    </h:body>
+</f:view>
+</html>

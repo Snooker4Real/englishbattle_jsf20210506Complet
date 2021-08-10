@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+	<title>English Battle G17</title>
+</h:head>
+
+<f:view>
+
+	<h:body>
+		<h1>English Battle G17</h1>
+		<h:form>
+		<p:messages id="messages" showDetail="true" autoUpdate="true" closeable="true"/>
+		
+		<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+			<h:outputLabel for="email" value="Email" />
+			<p:inputText id="email" value="#{connexionBean.joueur.email}" />
+
+			<h:outputLabel for="password" value="Mot de passe" />
+			<p:inputText id="password" value="#{connexionBean.joueur.motDePasse}" type="password" />
+			
+			<h:outputLabel for="connexion"></h:outputLabel>
+			<p:commandButton value="Connexion" action="#{connexionBean.connexion}" id="connexion" ajax="false"></p:commandButton>
+		</h:panelGrid>
+		</h:form>
+	
+	<h2>Hall of Fame</h2>
+	<c:forEach items="#{inscriptionBean.joueursDuHallOfFame}" var="joueur">
+	${joueur.prenom} ${joueur.meilleurScore}<br/>
+	</c:forEach>
+	
+	<br/>
+	
+	<a href="inscription.xhtml">Inscription</a>
+	<a href="joueurs.xhtml">Liste Des Joueurs</a>
+	<a href="verbes.xhtml">Liste Des verbes</a>
+	</h:body>
+</f:view>
+</html>

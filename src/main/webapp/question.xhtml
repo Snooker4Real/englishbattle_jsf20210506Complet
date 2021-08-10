@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+	<title>English Battle G17</title>
+</h:head>
+
+<f:view>
+
+	<h:body>
+		<h2>Utilisateur: #{joueur.prenom} (#{joueur.niveau.nom}), meilleur score: #{joueur.meilleurScore} verbe<c:if test="#{joueur.meilleurScore>1}">s</c:if></h2>
+		<h2>Question #{partie.score} : le verbe #{question.verbe.baseVerbale}</h2>
+		<h3>Il vous reste #{question.nbSecondesRestantes} seconde(s) pour répondre</h3>
+		<h:form>
+				<h:outputLabel value="#{question.verbe.baseVerbale}" for="preterit"/>
+				<c:if test="#{joueur.niveau.nom eq 'Débutant'}"> (#{question.verbe.traduction}) </c:if>
+				<p:inputText id="preterit" value="#{question.reponsePreterit}" />
+				<p:inputText id="participePasse" value="#{question.reponseParticipePasse}" />
+				<p:commandButton value="Envoyer" action="#{questionBean.verifierReponse}"></p:commandButton>
+		</h:form>
+	</h:body>
+</f:view>
+</html>
